@@ -1,0 +1,35 @@
+﻿# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+**/dist/
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE and OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Generated Prisma client
+backend/src/generated/
+
+# Temporary backup files
+*.backup
+*.backup-*
+*.before-*

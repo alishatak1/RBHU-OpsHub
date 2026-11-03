@@ -1,0 +1,52 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ShipmentStatus {
+  PENDING
+  PROCESSING
+  IN_TRANSIT
+  DELIVERED
+  CANCELLED
+}
+
+model Customer {
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  phone     String?
+  company   String?
+  isActive  Boolean    @default(true)
+  shipments Shipment[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Shipment {
+  id             String         @id @default(uuid())
+  trackingNumber String         @unique
+  origin         String
+  destination    String
+  status         ShipmentStatus @default(PENDING)
+  customerId     String
+  customer       Customer       @relation(fields: [customerId], references: [id])
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
