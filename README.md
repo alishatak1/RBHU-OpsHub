@@ -10,7 +10,7 @@ RBHU OpsHub is a full-stack operations management application for managing custo
 - Real-time shipment status notifications using Socket.IO.
 - Operations dashboard with shipment statistics and charts.
 - CSV-based sales analytics using Python, Pandas and Plotly.
-- AI logistics assistant API with Azure OpenAI integration support.
+- AI logistics assistant powered by Google's Gemini API.
 - JWT-based admin authentication with protected API routes.
 - Operations announcements API.
 - Swagger/OpenAPI documentation.
@@ -28,7 +28,7 @@ RBHU OpsHub is a full-stack operations management application for managing custo
 | Validation | Zod |
 | Real-time communication | Socket.IO |
 | Analytics | Python, Flask, Pandas, Plotly |
-| AI integration | Azure OpenAI compatible API |
+| AI integration | Google Gemini API (OpenAI-compatible endpoint) |
 | API documentation | Swagger UI / OpenAPI |
 | Database hosting | Neon PostgreSQL (development) |
 
@@ -36,25 +36,25 @@ RBHU OpsHub is a full-stack operations management application for managing custo
 
 ```text
 RBHU-OpsHub/
-â”œâ”€â”€ backend/
-â”‚   â”œâ”€â”€ prisma/
-â”‚   â””â”€â”€ src/
-â”‚       â”œâ”€â”€ config/
-â”‚       â”œâ”€â”€ controllers/
-â”‚       â”œâ”€â”€ middleware/
-â”‚       â”œâ”€â”€ repositories/
-â”‚       â”œâ”€â”€ routes/
-â”‚       â”œâ”€â”€ schemas/
-â”‚       â”œâ”€â”€ services/
-â”‚       â””â”€â”€ sockets/
-â”œâ”€â”€ frontend/
-â”‚   â””â”€â”€ src/
-â”œâ”€â”€ analytics/
-â”‚   â”œâ”€â”€ app.py
-â”‚   â”œâ”€â”€ requirements.txt
-â”‚   â””â”€â”€ sample-sales.csv
-â”œâ”€â”€ docs/
-â””â”€â”€ README.md
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ backend/
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ prisma/
+Ã¢â€â€š   Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ src/
+Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ config/
+Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ controllers/
+Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ middleware/
+Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ repositories/
+Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ routes/
+Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ schemas/
+Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ services/
+Ã¢â€â€š       Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ sockets/
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ frontend/
+Ã¢â€â€š   Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ src/
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ analytics/
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ app.py
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ requirements.txt
+Ã¢â€â€š   Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ sample-sales.csv
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ docs/
+Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ README.md
 ```
 
 ## Prerequisites
@@ -90,13 +90,12 @@ PORT=5000
 DATABASE_URL="YOUR_POSTGRESQL_CONNECTION_STRING"
 ```
 
-Optional AI configuration:
+AI configuration:
 
 ```env
-AZURE_OPENAI_ENDPOINT=
-AZURE_OPENAI_API_KEY=
-AZURE_OPENAI_DEPLOYMENT=
-AZURE_OPENAI_API_VERSION=2024-10-21
+AI_API_KEY=
+AI_MODEL=gemini-2.5-flash
+AI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai
 ```
 
 Never commit real credentials or `.env` files.
@@ -190,11 +189,11 @@ Never publish real credentials or tokens.
 
 ## Main API Modules
 
-- `/api/customers` â€” customer management.
-- `/api/shipments` â€” shipment management.
-- `/api/chat` â€” AI assistant.
-- `/api/announcements` â€” operations announcements.
-- `/analyze` â€” CSV analytics.
+- `/api/customers` Ã¢â‚¬â€ customer management.
+- `/api/shipments` Ã¢â‚¬â€ shipment management.
+- `/api/chat` Ã¢â‚¬â€ AI assistant.
+- `/api/announcements` Ã¢â‚¬â€ operations announcements.
+- `/analyze` Ã¢â‚¬â€ CSV analytics.
 
 See [API Documentation](docs/api-documentation.md).
 
@@ -225,9 +224,9 @@ A sample file is available at `analytics/sample-sales.csv`.
 
 ## AI Assistant
 
-The AI assistant accepts a message and optional conversation history. It can connect to Azure OpenAI when valid configuration is supplied.
+The AI assistant accepts a message and optional conversation history. It uses the Google Gemini API through its OpenAI-compatible endpoint.
 
-Without the required credentials, the API responds with HTTP 503 and a configuration message.
+Configure AI_API_KEY, AI_MODEL and AI_BASE_URL in backend/.env. Without the API key, the API responds with HTTP 503.
 
 ## Architecture and Design Documents
 
@@ -268,11 +267,11 @@ RBHU OpsHub | Operations Management Platform
 | PostgreSQL and Prisma | Implemented |
 | Real-time shipment updates | Implemented |
 | CSV analytics | Implemented |
-| AI assistant API | Implemented; Azure credentials required for live responses |
+| AI assistant API | Implemented; Gemini API configured for live responses |
 | Announcements | Implemented with mock data |
 | SharePoint live integration | Design documented; not connected |
 | Voice Agent | Architecture documented; not deployed |
 | Microsoft Fabric | Readiness documented; not connected |
 | Azure deployment | Deployment design documented; not deployed |
 
-The project runs locally. Live cloud integrations require the relevant Azure subscription, services and credentials.
+The project runs locally. Gemini AI responses require a valid Gemini API key. Azure deployment and other proposed cloud integrations are not live.

@@ -23,41 +23,38 @@ router.post("/", async (req, res) => {
     });
   }
 
-  const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
-  const apiKey = process.env.AZURE_OPENAI_API_KEY;
-  const deployment = process.env.AZURE_OPENAI_DEPLOYMENT;
-  const apiVersion = process.env.AZURE_OPENAI_API_VERSION || "2024-10-21";
+  const apiKey = process.env.AI_API_KEY;
+  const model = process.env.AI_MODEL || "gemini-2.5-flash";
+  const baseUrl = (process.env.AI_BASE_URL || "https://generativelanguage.googleapis.com/v1beta/openai").replace(/\/$/, "");
 
-  if (!endpoint || !apiKey || !deployment) {
+  if (!apiKey) {
     return res.status(503).json({
-      error: "AI assistant is not configured yet",
-      message: "Add your Azure OpenAI endpoint, API key and deployment name to the backend environment."
+      error: "AI assistant is not configured",
+      message: "Add AI_API_KEY to the backend environment."
     });
   }
 
   try {
-    const url =
-      `${endpoint.replace(/\/$/, "")}/openai/deployments/` +
-      `${deployment}/chat/completions?api-version=${apiVersion}`;
-
-    const response = await fetch(url, {
+    const response = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "api-key": apiKey
+        "Authorization": `Bearer ${apiKey}`
       },
       body: JSON.stringify({
+        model,
         messages: [
           {
             role: "system",
             content:
-              "You are RBHU OpsHub Assistant, a professional logistics operations assistant. " +
-              "Help users understand customers, shipments, delivery statuses and operational analytics. " +
-              "The latest user message may include current dashboard context such as customer and shipment counts. " +
-              "Use that context when answering questions about the dashboard. " +
-              "Be clear, concise and practical. Provide step-by-step suggestions when useful. " +
-              "Never invent shipment records, customer details, statistics or live database access. " +
-              "If information is not provided, explain that you do not have access to it."
+  "You are RBHU OpsHub Assistant, a professional logistics operations assistant. " +
+  "Help users understand customers, shipments, delivery statuses and operational analytics. " +
+  "The latest user message may include dashboard summary counts calculated from the application's loaded data. " +
+  "You may use those supplied counts to answer questions about dashboard totals and shipment statuses. " +
+  "However, you do not have direct database access and must not claim to retrieve individual customer or shipment records unless those records are explicitly provided. " +
+  "Never invent shipment records, customer details, statistics or database results. " +
+  "If information is not provided, clearly explain the limitation. " +
+  "Be clear, concise and practical. Provide step-by-step suggestions when useful."
           },
           ...validation.data.history,
           {
@@ -71,7 +68,7 @@ router.post("/", async (req, res) => {
     });
 
     if (!response.ok) {
-      console.error("Azure OpenAI request failed:", response.status);
+      console.error("AI provider request failed:", response.status);
       return res.status(502).json({
         error: "The AI service could not process your request",
         status: response.status
