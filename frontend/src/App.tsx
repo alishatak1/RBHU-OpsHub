@@ -214,7 +214,7 @@ function App() {
 
     void loadData();
 
-    const socket = io("http://localhost:5000");
+    const socket = io(import.meta.env.VITE_API_URL?.replace(/\/api\/?$/, "") || "http://localhost:5000");
     socket.on("shipment_status_changed", (event: { shipmentId: string; status: string }) => {
       setShipments(current => current.map(item =>
         item.id === event.shipmentId ? { ...item, status: event.status } : item
@@ -785,6 +785,7 @@ function StatusBadge({status}:{status:string}) {
 }
 
 export default App;
+
 
 
 
