@@ -173,13 +173,11 @@ Never publish real credentials or tokens.
 
 ## Main API Modules
 
-- `/api/customers` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â customer management.
-- `/api/shipments` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â shipment management.
-- `/api/chat` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â AI assistant.
-- `/api/announcements` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â operations announcements.
-- `/analyze` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â CSV analytics.
-
-See [API Documentation](docs/api-documentation.md).
+- `/api/customers` - Customer management.
+- `/api/shipments` - Shipment management.
+- `/api/chat` - AI assistant.
+- `/api/announcements` - Operations announcements.
+- Analytics service: `/analyze` - CSV analytics.
 
 ## Real-Time Shipment Updates
 
@@ -259,5 +257,6 @@ RBHU OpsHub | Operations Management Platform
 | Azure deployment | Deployment design documented; not deployed |
 
 The project runs locally. Gemini AI responses require a valid Gemini API key. Azure deployment and other proposed cloud integrations are not live.
+
 
 
