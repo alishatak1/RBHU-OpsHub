@@ -1,4 +1,4 @@
-# RBHU OpsHub
+﻿# RBHU OpsHub
 ### Enterprise Operations Management Platform
 
 RBHU OpsHub is a full-stack operations management application for managing customers, tracking shipments, monitoring operational activity and analyzing sales performance.
@@ -34,28 +34,12 @@ RBHU OpsHub is a full-stack operations management application for managing custo
 
 ## Project Structure
 
-```text
-RBHU-OpsHub/
-Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ backend/
-Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ prisma/
-Ã¢â€â€š   Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ src/
-Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ config/
-Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ controllers/
-Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ middleware/
-Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ repositories/
-Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ routes/
-Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ schemas/
-Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ services/
-Ã¢â€â€š       Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ sockets/
-Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ frontend/
-Ã¢â€â€š   Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ src/
-Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ analytics/
-Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ app.py
-Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ requirements.txt
-Ã¢â€â€š   Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ sample-sales.csv
-Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ docs/
-Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ README.md
-```
+- RBHU-OpsHub/
+  - backend/ (Prisma and API source)
+  - frontend/ (React application)
+  - analytics/ (Flask analytics service)
+  - docs/ (architecture, schema, API and deployment guides)
+  - README.md
 
 ## Prerequisites
 
@@ -189,11 +173,11 @@ Never publish real credentials or tokens.
 
 ## Main API Modules
 
-- `/api/customers` Ã¢â‚¬â€ customer management.
-- `/api/shipments` Ã¢â‚¬â€ shipment management.
-- `/api/chat` Ã¢â‚¬â€ AI assistant.
-- `/api/announcements` Ã¢â‚¬â€ operations announcements.
-- `/analyze` Ã¢â‚¬â€ CSV analytics.
+- `/api/customers` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â customer management.
+- `/api/shipments` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â shipment management.
+- `/api/chat` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â AI assistant.
+- `/api/announcements` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â operations announcements.
+- `/analyze` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â CSV analytics.
 
 See [API Documentation](docs/api-documentation.md).
 
@@ -275,4 +259,5 @@ RBHU OpsHub | Operations Management Platform
 | Azure deployment | Deployment design documented; not deployed |
 
 The project runs locally. Gemini AI responses require a valid Gemini API key. Azure deployment and other proposed cloud integrations are not live.
+
 
