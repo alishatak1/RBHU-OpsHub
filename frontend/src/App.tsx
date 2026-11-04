@@ -371,7 +371,7 @@ Use this dashboard context when answering the user's question.`,
     setAnalyticsError("");
 
     try {
-      const response = await fetch("http://localhost:8000/analyze", {
+      const response = await fetch("https://rbhu-opshub-analytics.onrender.com/analyze", {
         method: "POST",
         body: formData
       });
