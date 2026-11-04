@@ -18,7 +18,11 @@ import { prisma } from "./config/prisma";
 const app = express();
 const httpServer = createServer(app);
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://rbhu-opshub-frontend-v2.onrender.com"
+];
 
 const io = new Server(httpServer, {
   cors: {
