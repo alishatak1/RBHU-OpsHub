@@ -275,3 +275,4 @@ RBHU OpsHub | Operations Management Platform
 | Azure deployment | Deployment design documented; not deployed |
 
 The project runs locally. Gemini AI responses require a valid Gemini API key. Azure deployment and other proposed cloud integrations are not live.
+
